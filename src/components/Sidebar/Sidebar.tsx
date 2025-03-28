@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import {
   FaHome, FaClock, FaSearch, FaCog, FaUsers, FaUserFriends,
   FaBoxOpen, FaExclamationCircle, FaExclamationTriangle,
@@ -28,12 +29,12 @@ export default function Sidebar() {
     <aside className="bg-black text-white w-64 h-screen flex flex-col justify-between p-4 shadow-xl">
       <div>
         <nav className="space-y-2">
-          <SidebarItem icon={<FaHome />} label="Home" />
-          <SidebarItem icon={<FaClock />} label="Timeline" />
-          <SidebarItem icon={<FaSearch />} label="Search" active />
-          <SidebarItem icon={<FaCog />} label="Settings" />
-          <SidebarItem icon={<FaUsers />} label="Users" />
-          <SidebarItem icon={<FaUserFriends />} label="Teams" />
+          <SidebarItem icon={<FaHome />} label="Home" href="/" />
+          <SidebarItem icon={<FaClock />} label="Timeline" href="/timeline" />
+          <SidebarItem icon={<FaSearch />} label="Search" href="/search" />
+          <SidebarItem icon={<FaCog />} label="Settings" href="/settings" />
+          <SidebarItem icon={<FaUsers />} label="Users" href="/users" />
+          <SidebarItem icon={<FaUserFriends />} label="Teams" href="/teams" />
         </nav>
 
         {/* Projects */}
@@ -45,7 +46,12 @@ export default function Sidebar() {
         {showProjects && (
           <div className="pl-4 space-y-2 mt-2">
             {projects.map((project) => (
-              <SidebarItem key={project} icon={<FaBoxOpen />} label={project} />
+              <SidebarItem
+                key={project}
+                icon={<FaBoxOpen />}
+                label={project}
+                href={`/projects/${project.toLowerCase()}`}
+              />
             ))}
           </div>
         )}
@@ -59,7 +65,12 @@ export default function Sidebar() {
         {showPriorities && (
           <div className="pl-4 space-y-2 mt-2">
             {priorities.map((p) => (
-              <SidebarItem key={p.label} icon={p.icon} label={p.label} />
+              <SidebarItem
+                key={p.label}
+                icon={p.icon}
+                label={p.label}
+                href={`/priority/${p.label.toLowerCase()}`}
+              />
             ))}
           </div>
         )}
@@ -75,27 +86,24 @@ export default function Sidebar() {
 }
 
 function SidebarItem({
-    icon,
-    label,
-    active = false
-  }: {
-    icon: React.ReactNode
-    label: string
-    active?: boolean
-  }) {
-    return (
-      <div
-        className={`flex items-center space-x-3 cursor-pointer px-3 py-2 rounded-md 
-          ${active ? 'bg-gray-800' : 'hover:bg-gray-700 transition-colors'}`}
-      >
-        <span className="text-lg">{icon}</span>
-        <span className="text-sm">{label}</span>
-      </div>
-    )
-  }
-  
-  
-  
+  icon,
+  label,
+  href
+}: {
+  icon: React.ReactNode
+  label: string
+  href: string
+}) {
+  return (
+    <Link
+      href={href}
+      className="flex items-center space-x-3 cursor-pointer px-3 py-2 rounded-md hover:bg-gray-700 transition-colors text-gray-300"
+    >
+      <span className="text-lg">{icon}</span>
+      <span className="text-sm">{label}</span>
+    </Link>
+  )
+}
 
 function SectionToggle({
   title,

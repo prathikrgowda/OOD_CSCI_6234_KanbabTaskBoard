@@ -1,15 +1,16 @@
 'use client'
 
 import React from 'react'
+import Link from 'next/link'
 import Sidebar from '@/components/Sidebar/Sidebar'
 import Header from '@/components/Header/Header'
 
 const projects = [
-  { id: 1, name: 'Apollo', owner: 'Laura Adams', status: 'Active' },
-  { id: 2, name: 'Beacon', owner: 'Steve Jobs', status: 'Paused' },
-  { id: 3, name: 'Catalyst', owner: 'Olivia Pace', status: 'Completed' },
-  { id: 4, name: 'Delta', owner: 'Quincy Adams', status: 'Active' },
-  { id: 5, name: 'Echo', owner: 'Ursula Monroe', status: 'Archived' }
+  { id: 1, name: 'Apollo', owner: 'Laura Adams' },
+  { id: 2, name: 'Beacon', owner: 'Steve Jobs' },
+  { id: 3, name: 'Catalyst', owner: 'Olivia Pace' },
+  { id: 4, name: 'Delta', owner: 'Quincy Adams' },
+  { id: 5, name: 'Echo', owner: 'Ursula Monroe' }
 ]
 
 const teams = [
@@ -22,68 +23,59 @@ const teams = [
 
 export default function HomePage() {
   return (
-    <div className="flex min-h-screen">
-      {/* Sidebar */}
-      <Sidebar />
+    <div className="min-h-screen flex flex-col bg-white">
+      {/* Full-width Header */}
+      <Header />
 
-      {/* Main Content */}
-      <div className="flex flex-col flex-1 bg-white">
-        {/* Header */}
-        <Header />
+      {/* Content below Header */}
+      <div className="flex flex-1">
+        {/* Sidebar */}
+        <Sidebar />
 
-        {/* Content */}
-        <main className="p-8 space-y-12">
-          {/* Projects Table */}
+        {/* Main Content */}
+        <main className="flex-1 p-8 space-y-12">
+          {/* Projects Grid */}
           <section>
-            <h2 className="text-xl font-semibold mb-4 text-gray-800">Projects</h2>
-            <div className="overflow-x-auto rounded shadow border border-gray-300 bg-white">
-              <table className="min-w-full text-sm text-gray-900">
-                <thead className="bg-gray-200 text-left text-gray-700">
-                  <tr>
-                    <th className="px-4 py-2">Project ID</th>
-                    <th className="px-4 py-2">Project Name</th>
-                    <th className="px-4 py-2">Owner</th>
-                    <th className="px-4 py-2">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {projects.map((project) => (
-                    <tr key={project.id} className="hover:bg-gray-100">
-                      <td className="px-4 py-2">{project.id}</td>
-                      <td className="px-4 py-2">{project.name}</td>
-                      <td className="px-4 py-2">{project.owner}</td>
-                      <td className="px-4 py-2">{project.status}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-semibold text-gray-800">Projects</h2>
+              <button className="flex items-center px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm">
+                <span className="text-lg mr-1">＋</span> New Project
+              </button>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {projects.map((project) => (
+                <Link
+                  key={project.id}
+                  href={`/projects/${project.id}`}
+                  className="block bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md hover:scale-[1.01] transition-transform p-4"
+                >
+                  <h3 className="text-lg font-semibold text-gray-900 mb-1">{project.name}</h3>
+                  <p className="text-sm text-gray-600">Owner: {project.owner}</p>
+                </Link>
+              ))}
             </div>
           </section>
 
-          {/* Teams Table */}
+          {/* Teams Grid */}
           <section>
-            <h2 className="text-xl font-semibold mb-4 text-gray-800">Teams</h2>
-            <div className="overflow-x-auto rounded shadow border border-gray-300 bg-white">
-              <table className="min-w-full text-sm text-gray-900">
-                <thead className="bg-gray-200 text-left text-gray-700">
-                  <tr>
-                    <th className="px-4 py-2">Team ID</th>
-                    <th className="px-4 py-2">Team Name</th>
-                    <th className="px-4 py-2">Product Owner</th>
-                    <th className="px-4 py-2">Project Manager</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {teams.map((team) => (
-                    <tr key={team.id} className="hover:bg-gray-100">
-                      <td className="px-4 py-2">{team.id}</td>
-                      <td className="px-4 py-2">{team.name}</td>
-                      <td className="px-4 py-2">{team.productOwner}</td>
-                      <td className="px-4 py-2">{team.projectManager}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-semibold text-gray-800">Teams</h2>
+              <button className="flex items-center px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm">
+                <span className="text-lg mr-1">＋</span> New Team
+              </button>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {teams.map((team) => (
+                <Link
+                  key={team.id}
+                  href={`/teams/${team.id}`}
+                  className="block bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md hover:scale-[1.01] transition-transform p-4"
+                >
+                  <h3 className="text-lg font-semibold text-gray-900 mb-1">{team.name}</h3>
+                  <p className="text-sm text-gray-600">Product Owner: {team.productOwner}</p>
+                  <p className="text-sm text-gray-600">Project Manager: {team.projectManager}</p>
+                </Link>
+              ))}
             </div>
           </section>
         </main>
