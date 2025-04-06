@@ -1,9 +1,11 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import Sidebar from '@/components/Sidebar/Sidebar'
 import Header from '@/components/Header/Header'
+import CreateBoardModal from '@/components/Modals/CreateBoardModal'
+import CreateTeamModal from '@/components/Modals/CreateTeamModal'
 
 const projects = [
   { id: 1, name: 'Apollo', owner: 'Laura Adams' },
@@ -22,23 +24,25 @@ const teams = [
 ]
 
 export default function HomePage() {
+  const [isBoardModalOpen, setIsBoardModalOpen] = useState(false)
+  const [isTeamModalOpen, setIsTeamModalOpen] = useState(false)
+
   return (
     <div className="min-h-screen flex flex-col bg-white">
-      {/* Full-width Header */}
       <Header />
 
-      {/* Content below Header */}
       <div className="flex flex-1">
-        {/* Sidebar */}
         <Sidebar />
 
-        {/* Main Content */}
         <main className="flex-1 p-8 space-y-12">
           {/* Projects Grid */}
           <section>
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-semibold text-gray-800">Projects</h2>
-              <button className="flex items-center px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm">
+              <button
+                onClick={() => setIsBoardModalOpen(true)}
+                className="flex items-center px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm"
+              >
                 <span className="text-lg mr-1">＋</span> New Project
               </button>
             </div>
@@ -60,7 +64,10 @@ export default function HomePage() {
           <section>
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl font-semibold text-gray-800">Teams</h2>
-              <button className="flex items-center px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm">
+              <button
+                onClick={() => setIsTeamModalOpen(true)}
+                className="flex items-center px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition text-sm"
+              >
                 <span className="text-lg mr-1">＋</span> New Team
               </button>
             </div>
@@ -80,6 +87,10 @@ export default function HomePage() {
           </section>
         </main>
       </div>
+
+      {/* Modals */}
+      <CreateBoardModal isOpen={isBoardModalOpen} onClose={() => setIsBoardModalOpen(false)} />
+      <CreateTeamModal isOpen={isTeamModalOpen} onClose={() => setIsTeamModalOpen(false)} />
     </div>
   )
 }
