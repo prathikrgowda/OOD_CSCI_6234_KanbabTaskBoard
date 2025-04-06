@@ -50,7 +50,7 @@ export default function HomePage() {
               {projects.map((project) => (
                 <Link
                   key={project.id}
-                  href={`/projects/${project.id}`}
+                  href={`/Board/${project.id}`}
                   className="block bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-md hover:scale-[1.01] transition-transform p-4"
                 >
                   <h3 className="text-lg font-semibold text-gray-900 mb-1">{project.name}</h3>
