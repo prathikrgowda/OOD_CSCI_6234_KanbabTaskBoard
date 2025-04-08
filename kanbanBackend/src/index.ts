@@ -3,6 +3,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import prisma from './config/db'
 import userRoutes from './routes/userRoutes'
+import teamRoutes from './routes/teamRoutes'
 
 
 
@@ -19,6 +20,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/users', userRoutes)
+app.use('/api/teams', teamRoutes)
 
 
 app.listen(PORT, () => {
