@@ -11,7 +11,6 @@ export default function Header() {
       {/* Right: Actions */}
       <div className="flex items-center space-x-6">
         <FaCog className="text-lg cursor-pointer hover:text-gray-300" title="Settings" />
-        <FaUser className="text-lg cursor-pointer hover:text-gray-300" title="Profile" />
         <button className="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm font-medium">
           Sign out
         </button>

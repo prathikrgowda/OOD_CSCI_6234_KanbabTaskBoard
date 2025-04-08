@@ -33,8 +33,6 @@ export default function Sidebar() {
           <SidebarItem icon={<FaClock />} label="Timeline" href="/timeline" />
           <SidebarItem icon={<FaSearch />} label="Search" href="/search" />
           <SidebarItem icon={<FaCog />} label="Settings" href="/settings" />
-          <SidebarItem icon={<FaUsers />} label="Users" href="/users" />
-          <SidebarItem icon={<FaUserFriends />} label="Teams" href="/teams" />
         </nav>
 
         {/* Projects */}
