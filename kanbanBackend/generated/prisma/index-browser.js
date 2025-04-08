@@ -122,8 +122,16 @@ exports.Prisma.UserScalarFieldEnum = {
   username: 'username',
   email: 'email',
   password: 'password',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  position: 'position',
+  notifyAssignedTasks: 'notifyAssignedTasks',
+  notifyTaskComments: 'notifyTaskComments',
+  notifyDueDates: 'notifyDueDates',
+  notifyBoardInvites: 'notifyBoardInvites',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  isDeleted: 'isDeleted'
 };
 
 exports.Prisma.SortOrder = {
@@ -134,6 +142,11 @@ exports.Prisma.SortOrder = {
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 
 

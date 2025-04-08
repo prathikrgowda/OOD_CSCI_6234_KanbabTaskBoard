@@ -15,10 +15,20 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  username  String   @unique
-  email     String   @unique
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id                  Int      @id @default(autoincrement())
+  username            String   @unique
+  email               String   @unique
+  password            String
+  firstName           String?
+  lastName            String?
+  position            String?
+
+  notifyAssignedTasks Boolean  @default(true)
+  notifyTaskComments  Boolean  @default(true)
+  notifyDueDates      Boolean  @default(true)
+  notifyBoardInvites  Boolean  @default(true)
+
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  isDeleted           Boolean  @default(false) // for soft delete
 }
